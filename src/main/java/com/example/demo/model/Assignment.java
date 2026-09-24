@@ -23,6 +23,7 @@ public class Assignment {
     @Column(nullable = false)
     private String title;
 
+    @Column(columnDefinition = "TEXT")
     private String description;
 
     @Column(nullable = false)
@@ -34,10 +35,8 @@ public class Assignment {
     @ManyToOne
     @JoinColumn(name = "classroom_id", nullable = false)
     private Classroom classroom;
-
+    
     @JsonIgnore
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
-    @ManyToMany(mappedBy = "assignment", cascade = CascadeType.ALL)
-    private Repository repositories;
+    @OneToMany(mappedBy = "assignment", cascade = CascadeType.ALL)
+    private List<Repository> repositories;
 }

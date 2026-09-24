@@ -34,18 +34,22 @@ public class User {
 
     @JsonIgnore
     @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL)
-    private List<Classroom> ownedRepositories;
+    private List<Classroom> taughtClassrooms;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
-    private List<PullRequest> taughtRepositories;
+    private List<Repository> ownedRepositories;
 
-    @OneToMany (mappedBy = "author", cascade = CascadeType.ALL)
+    @JsonIgnore
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
+    private List<Commit> commits;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
     private List<PullRequest> authoredPullRequests;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "reviewer", cascade = CascadeType.ALL)
     private List<PullRequest> reviewedPullRequests;
 
-    @JsonIgnore
-    @OneToMany  (mappedBy = "author", cascade = CascadeType.ALL)
-    private List<Commit> commits;
 }

@@ -26,15 +26,15 @@ public class Classroom {
     private String courseCode;
 
     @Column(nullable = false)
-    private Integer semester;
+    private String semester;
 
     @ManyToOne
-    @JoinColumn(name = "teacher_id", nullable = false)
+    @JoinColumn(name = "teacher_id")
     private User teacher;
 
     @JsonIgnore
     @OneToMany(mappedBy = "classroom", cascade = CascadeType.ALL)
-    private List<Assignment> assigntmentsHistory;
+    private List<Assignment> assignments;
 
 
 }
