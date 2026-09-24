@@ -36,7 +36,7 @@ public class PullRequest {
     @JoinColumn(name = "repository_id", nullable = false)
     private List<Repository> repository;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "reviewer_id")
     private User teacher;
 }

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -17,21 +18,21 @@ public class Assignment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long deadline;
+    private Long id;
 
     @Column(nullable = false)
     private String title;
 
-    @Column(columnDefinition = "TEXT")
-    private String id2;
+    private String description;
 
-    @Column(nullable = false, unique = true)
-    private Timestamp id;
+    @Column(nullable = false)
+    private Timestamp deadline;
 
     @Column(name = "max_score", nullable = false)
     private Integer maxScore;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @ManyToOne
+    @JoinColumn(name = "classroom_id", nullable = false)
     private Classroom classroom;
 
     @JsonIgnore
